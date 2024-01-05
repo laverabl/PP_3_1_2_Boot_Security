@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New User</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/admin/users}" th:object="${user}">
+    <label for="username">Enter username: </label>
+    <input type="text" th:field="*{username}" id="username"/>
+    <br/>
+    <br/>
+    <label for="surname">Enter surname: </label>
+    <input type="text" th:field="*{surname}" id="surname"/>
+    <br/>
+    <br/>
+    <label for="email">Enter email: </label>
+    <input type="text" th:field="*{email}" id="email"/>
+    <br/>
+    <br/>
+    <label for="password">Enter password: </label>
+    <input type="text" th:field="*{password}" id="password"/>
+    <br/>
+    <br/>
+    <div class="form-group">
+    <label class="font-weight-bold col-form-label-lg">Roles:</label>
+    <div th:each="role: ${listRoles}" class="form-check">
+        <input type="checkbox" th:field="*{roles}" th:id="${'roleCheckbox' + role.id}" th:value="${role.id}"
+               class="form-check-input" />
+        <label th:for="${'roleCheckbox' + role.id}" class="form-check-label" th:text="${role.name}"></label>
+    </div>
+    </div>
+    <br/>
+    <br/>
+    <input type="submit" value="Create!"/>
+</form>
+
+<input style="color:black;" type="button" value="Logout" onclick="window.location.href='/logout'">
+</body>
+</html>
