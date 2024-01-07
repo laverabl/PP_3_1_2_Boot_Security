@@ -24,9 +24,8 @@ public class UserController {
     @GetMapping("")
     public String showUser(Model model, Principal principal) {
         String username = principal.getName();
-        User user = userService.getUserByName(username);
-        model.addAttribute("user", user);
-        return "user-show";
+        model.addAttribute("user", userService.getUserByName(username));
+        return "user";
     }
 
 }
