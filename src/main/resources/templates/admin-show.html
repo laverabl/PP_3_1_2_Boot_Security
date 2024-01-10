@@ -32,10 +32,10 @@
     </tbody>
 </table>
 <br>
-<a class="edit-link" th:href="@{http://localhost:8080/admin/users/{id}/edit (id=${user.getId()})}">Edit</a>
+<a class="edit-link" th:href="@{/admin/users/{id}/edit (id=${user.getId()})}">Edit</a>
 <br>
 <br>
-<form th:method="DELETE" th:action="@{http://localhost:8080/admin/users/{id}(id=${user.getId()})}">
+<form th:method="DELETE" th:action="@{/admin/users/{id}(id=${user.getId()})}">
     <button type="submit">Delete</button>
 </form>
 </body>

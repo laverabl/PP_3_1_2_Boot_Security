@@ -25,8 +25,7 @@ public class User implements UserDetails {
     private String email;
 
 
-    @ManyToMany(fetch = FetchType.LAZY)
-
+    @ManyToMany
 
     private Set<Role> roles;
 

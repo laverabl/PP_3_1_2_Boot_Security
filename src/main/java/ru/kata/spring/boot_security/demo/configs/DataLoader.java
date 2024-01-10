@@ -37,8 +37,8 @@ public class DataLoader implements CommandLineRunner {
 
         Set<Role> adminRoles = new HashSet<>(Arrays.asList(adminRole, userRole));
 
-        User adminUser = new User(1,"john_doe", "Bushi", passwordEncoder.encode("20"), "John_doe@example.com", adminRoles);
-        User userUser = new User(2, "mark_21", "Tven", passwordEncoder.encode("1221"), "Tven1221@example.ru", Set.of(userRole));
+        User adminUser = new User(1,"admin", "Bushi", passwordEncoder.encode("admin"), "John_doe@example.com", adminRoles);
+        User userUser = new User(2, "user", "Tven", passwordEncoder.encode("user"), "Tven1221@example.ru", Set.of(userRole));
 
         userRepository.save(adminUser);
         userRepository.save(userUser);
