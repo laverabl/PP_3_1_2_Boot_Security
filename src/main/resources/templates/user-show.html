@@ -40,7 +40,7 @@
     </div>
 
     <div class="col  pt-3 h-100 min-vh-100 bg-light">
-      <!-- User panel -->
+      <!-- Admin panel -->
       <div class="container-fluid">
         <h1 class="display-6"><b>User information-page</b></h1>
         <div class="container-fluid border pt-1 pb-0">
@@ -66,7 +66,7 @@
                 <td th:text="${user.password}">VALUE</td>
                 <td>
                   <span th:each="role : ${user.roles}" th:text="${role.name == 'ROLE_USER' ? 'USER ' : role.name == 'ROLE_ADMIN' ? 'ADMIN ' : role.name}"></span>
-                </td>
+              </td>
               </tbody>
           </table>
         </div>
