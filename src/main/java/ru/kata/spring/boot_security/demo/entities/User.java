@@ -15,23 +15,18 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "username")
     private String username;
 
-    @Column(name = "surname")
     private String surname;
 
-    @Column(name = "password")
+
     private String password;
 
-    @Column(name = "email")
     private String email;
 
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "users_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @ManyToMany(fetch = FetchType.LAZY)
+
 
     private Set<Role> roles;
 
@@ -46,6 +41,7 @@ public class User implements UserDetails {
         this.email = email;
         this.roles = roles;
     }
+
 
     public void setPassword(String password) {
         this.password = password;
