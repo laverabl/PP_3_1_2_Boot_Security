@@ -26,6 +26,7 @@ public class UserController {
         String username = principal.getName();
         User user = userService.getUserByName(username);
         model.addAttribute("user", user);
+        System.out.println("User roles: " + user.getRoles() + "\n" + user.getAuthorities());
         return "user-show";
     }
 

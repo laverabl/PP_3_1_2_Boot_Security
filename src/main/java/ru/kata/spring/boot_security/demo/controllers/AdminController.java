@@ -25,7 +25,7 @@ public class AdminController {
     }
 
     @GetMapping("")
-    public String showUser(Model model, Principal principal) {
+    public String showUser(Model model, Principal principal, @ModelAttribute("newUser") User newUser) {
         String username = principal.getName();
         User user = userService.getUserByName(username);
         model.addAttribute("user", user);
@@ -34,14 +34,7 @@ public class AdminController {
     }
 
 
-
-    @GetMapping("new")
-    public String createNewUser(@ModelAttribute("user") User user, Model model) {
-        model.addAttribute("listRoles", roleService.getListRoles());
-        return "admin-new";
-    }
-
-    @PostMapping("")
+    @PostMapping("/{id}")
     public String create(@ModelAttribute("user") User user) {
         userService.newUser(user);
         return "redirect:/admin";

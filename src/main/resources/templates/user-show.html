@@ -34,12 +34,17 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/user">User</a>
           </li>
+
+          <li class="nav-item" th:each="role : ${user.roles}" th:if="${role.name == 'ROLE_ADMIN'}">
+            <a class="nav-link" aria-current="page" href="/admin">Admin</a>
+          </li>
         </ul>
       </div>
     </div>
 
+
+    <!-- Admin panel -->
     <div class="col  pt-3 h-100 min-vh-100 bg-light">
-      <!-- Admin panel -->
       <div class="container-fluid">
         <h1 class="display-6"><b>User information-page</b></h1>
         <div class="container-fluid border pt-1 pb-0">
