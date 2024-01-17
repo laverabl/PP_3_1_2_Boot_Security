@@ -30,24 +30,22 @@ public class AdminController {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
-//    @PostMapping("/user")
-//    public ResponseEntity<User> addNewUser(@RequestBody User user) {
-//        userService.newUser(user);
-//        return new ResponseEntity<>(user, HttpStatus.CREATED);
-//    }
-//
-//    @GetMapping("/{id}")
-//    public ResponseEntity<User> getUserById(@PathVariable("id") int id) {
-//        User user = userService.getUserById(id);
-//        return new ResponseEntity<>(user, HttpStatus.OK);
-//    }
-//
+    @PostMapping("/newUser")
+    public ResponseEntity<User> addNewUser(@RequestBody User user) {
+        userService.newUser(user);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable("id") int id) {
+        User user = userService.getUserById(id);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
 //    @PutMapping("/{id}")
 //    public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody User updatedUser) {
 //        User user = userService.getUserById(id);
 //        if (user != null) {
-////            // Обновить свойства пользователя и сохранить
-////            user.setName(updatedUser.getName());
 //            user.setEmail(updatedUser.getEmail());
 //            userService.newUser(user);
 //            return new ResponseEntity<>(user, HttpStatus.OK);

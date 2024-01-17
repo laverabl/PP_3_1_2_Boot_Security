@@ -7,7 +7,7 @@ async function getAdminPage() {
         if (page.ok) {
             let listAllUser = await page.json();
             loadTableData(listAllUser);
-            headerUser(listAllUser); // Добавляем вызов функции для отображения данных пользователя в шапке
+            headerUser(listAllUser);
         } else {
             alert(`Error, ${page.status}`);
         }
