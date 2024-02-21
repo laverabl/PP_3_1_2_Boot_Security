@@ -44,10 +44,10 @@ function loadTableData(listAllUser) {
                 <td>${user.email}</td>
                 <td>${roles}</td>
                 <td>
-                    <button type="button" class="btn btn-primary" >Edit</button>
+                    <button type="button" class="btn btn-primary" onclick="" >Edit</button>
                 </td>
                 <td>
-                    <button class="btn btn-danger" >Delete</button>
+                    <button class="btn btn-danger" onclick=" ">Delete</button>
                 </td>
             </tr>`;
     }

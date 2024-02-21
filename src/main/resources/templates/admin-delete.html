@@ -54,3 +54,53 @@
 
 </body>
 </html>
+
+
+
+
+<!--  <div class="modal" id="editUser" style="display: none">-->
+<!--    <div class="modal-dialog">-->
+<!--      <div class="modal-content">-->
+<!--        <div class="modal-header">-->
+<!--          <h5 class="modal-title">Edit user</h5>-->
+<!--          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeModal()"></button>-->
+<!--        </div>-->
+<!--        <div class="modal-body">-->
+<!--          <form id="editForm" method="post" th:action="@{/admin/{id}/delete (id=${user.getId()})}" th:object="${user}">-->
+<!--            <input type="hidden" name="_method" value="delete" />-->
+<!--            <div class="row mb-3">-->
+<!--              <label for="userId" class="form-label text-center"><b>Id</b></label>-->
+<!--              <input type="text" class="form-control" name="id" id="userId" placeholder="Id" th:field="*{id}" readonly>-->
+<!--            </div>-->
+<!--            <div class="row mb-3">-->
+<!--              <label for="name" class="form-label text-center"><b>Username</b></label>-->
+<!--              <input type="text" class="form-control" name="username" id="name" placeholder="Username" th:field="*{username}" readonly>-->
+<!--            </div>-->
+<!--            <div class="row mb-3">-->
+<!--              <label for="surname" class="form-label text-center"><b>Last name</b></label>-->
+<!--              <input name="surname" type="text" class="form-control" id="surname" placeholder="Surname" th:field="*{surname}" readonly>-->
+<!--            </div>-->
+<!--            <div class="row mb-3">-->
+<!--              <label for="email" class="form-label text-center"><b>Email</b></label>-->
+<!--              <input type="email" class="form-control" name="email" id="email" placeholder="Email" th:field="*{email}" readonly>-->
+<!--            </div>-->
+<!--            <div class="row mb-3">-->
+<!--              <label for="password" class="form-label text-center"><b>Password</b></label>-->
+<!--              <input type="text" class="form-control" name="password" id="password" placeholder="Password" th:field="*{password}" readonly>-->
+<!--            </div>-->
+<!--            <div class="row mb-3">-->
+<!--              <label for="rolesId" class="form-label text-center"><b>Role</b></label>-->
+<!--              <select name="roles" class="form-select" size="2" multiple aria-label="rolesId" id="rolesId">-->
+<!--                <option value="1" >ADMIN</option>-->
+<!--                <option value="2">USER</option>-->
+<!--              </select>-->
+<!--            </div>-->
+<!--            <div class="d-grid gap-2 d-md-flex justify-content-md-end">-->
+<!--              <button type="button" class="btn btn-secondary">Close</button>-->
+<!--              <button type="submit" class="btn btn-danger">Edit</button>-->
+<!--            </div>-->
+<!--            </form>-->
+<!--          </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->

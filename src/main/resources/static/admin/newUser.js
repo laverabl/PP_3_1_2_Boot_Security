@@ -13,39 +13,53 @@ function closeModal() {
     document.getElementById("tabUsers").style.display = 'block';
 }
 
-async function addNewUser(event) {
+
+function addNewUser(event) {
     event.preventDefault();
 
-    const form = document.getElementById('addForm');
+    let username = document.getElementById("nameNew").value;
+    let surname = document.getElementById("surnameNew").value;
+    let email = document.getElementById("emailNew").value;
+    let password = document.getElementById("passwordNew").value;
+    let selectedRoles = Array.from(document.getElementById("rolesIdNew").selectedOptions)
+        .map(option => ({
+            id: option.value,
+            name: 'ROLE_' + option.text
+        }))
 
     const jsonObject = {
-        username: form.username.value,
-        surname: form.surname.value,
-        email: form.email.value,
-        password: form.password.value,
-        roles: Array.from(form.roles.selectedOptions, option => option.value)
+        username: username,
+        surname: surname,
+        email: email,
+        password: password,
+        roles: selectedRoles
     };
 
-    try {
-        const response = await fetch(urlNew, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(jsonObject)
-        });
+    console.log(jsonObject)
 
+
+    // Отправляем данные на сервер
+    fetch(urlNew, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(jsonObject)
+    }).then(response => {
         if (response.ok) {
-            let result = await response.json();
-            alert(result.message);
-            await getAdminPage();
-            closeModal();
+            return response.json();
         } else {
-            alert(`Error, ${response.status}`);
+            throw new Error(`Error: ${response.status}`);
         }
-    } catch (error) {
+    }).then(result => {
+        alert(result.message);
+        formNew.reset();
+        closeModal();
+        getAdminPage();
+    }).catch(error => {
         console.error("Error adding new user:", error);
-    }
+    });
 }
+
 

@@ -2,6 +2,9 @@ package ru.kata.spring.boot_security.demo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,7 +13,9 @@ import java.util.Collection;
 import java.util.Set;
 
 @Entity
+@Data
 @Table(name = "users")
+@Scope("prototype")
 public class User implements UserDetails {
 
     @Id
@@ -26,9 +31,8 @@ public class User implements UserDetails {
 
     private String email;
 
-
-    @ManyToMany
-    @JsonManagedReference
+//    @JsonManagedReference
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Role> roles;
 
     public User() {
@@ -43,26 +47,6 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -99,23 +83,4 @@ public class User implements UserDetails {
         return true;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
 }
