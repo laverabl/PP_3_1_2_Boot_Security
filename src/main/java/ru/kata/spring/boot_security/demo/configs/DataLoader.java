@@ -9,12 +9,8 @@ import ru.kata.spring.boot_security.demo.entities.User;
 import ru.kata.spring.boot_security.demo.repositories.RoleRepository;
 import ru.kata.spring.boot_security.demo.repositories.UserRepository;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
 @Component
-public class DataLoader implements CommandLineRunner {
+public class DataLoader implements CommandLineRunner{
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
@@ -29,18 +25,28 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Role adminRole = new Role("ROLE_ADMIN");
-        Role userRole = new Role("ROLE_USER");
 
-        roleRepository.save(adminRole);
-        roleRepository.save(userRole);
+        Role adminRole = roleRepository.findByRole("ADMIN");
+        if (adminRole == null) {
+            adminRole = roleRepository.save(new Role("ADMIN"));
+        }
 
-        Set<Role> adminRoles = new HashSet<>(Arrays.asList(adminRole, userRole));
+        Role userRole = roleRepository.findByRole("USER");
+        if (userRole == null) {
+            userRole = roleRepository.save(new Role("USER"));
+        }
 
-        User adminUser = new User(1,"admin", "Bushi", passwordEncoder.encode("admin"), "John_doe@example.com", adminRoles);
-        User userUser = new User(2, "user", "Tven", passwordEncoder.encode("user"), "Tven1221@example.ru", Set.of(userRole));
-
+        User adminUser = new User();
+        adminUser.setUsername("admin");
+        adminUser.setPassword(passwordEncoder.encode("admin"));
+        adminUser.addRole(adminRole);
+        adminUser.addRole(userRole);
         userRepository.save(adminUser);
+
+        User userUser = new User();
+        userUser.setUsername("user");
+        userUser.setPassword(passwordEncoder.encode("user"));
+        userUser.addRole(userRole);
         userRepository.save(userUser);
     }
 }
