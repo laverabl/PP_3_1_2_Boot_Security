@@ -28,7 +28,7 @@ function editUser() {
                 roles: editUserRoles
             })
         }).then(() => {
-            $('#editFormCloseButton').click();
+            $('#editModal').modal('hide');
             findAll();
         });
     });

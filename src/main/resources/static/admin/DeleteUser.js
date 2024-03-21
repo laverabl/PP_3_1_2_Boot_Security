@@ -23,7 +23,7 @@ function deleteUser() {
                 'Content-Type': 'application/json'
             }
         }).then(() => {
-            $('#deleteFormCloseButton').click();
+            $('#deleteModal').modal('hide');
             findAll();
         });
     });
