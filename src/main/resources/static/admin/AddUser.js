@@ -6,10 +6,12 @@ function addUser() {
         ev.preventDefault();
         let newUserRoles = [];
         for (let i = 0; i < formNew.roles.options.length; i++) {
-            if (formNew.roles.options[i].selected) newUserRoles.push({
-                id: formNew.roles.value,
-                name: "ROLE_" + formNew.roles.options[i].text
-            });
+            if (formNew.roles.options[i].selected) {
+                newUserRoles.push({
+                    id: formNew.roles.options[i].value,
+                    name: "ROLE_" + formNew.roles.options[i].text
+                });
+            }
         }
         fetch("/admin/users", {
             method: 'POST',
@@ -25,7 +27,7 @@ function addUser() {
         }).then(() => {
             formNew.reset();
             findAll();
-            $('#home-tab').click();
+            $('#nav-home-tab').tab('show');
         });
     });
 }
